@@ -14,6 +14,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(78)->create();
+        User::create([
+            'firstName' => 'Dom',
+            'lastName' => 'Coxitos',
+            'email' => 'contato@domcoxitos.com',
+            'password' => bcrypt('Mudar@432!'),
+        ]);
     }
 }

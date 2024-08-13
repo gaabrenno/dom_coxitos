@@ -19,6 +19,11 @@
                 <li><a href="{{route('site.category',$categoryM->id)}}">{{$categoryM->name}}</a></li>
             @endforeach
         </ul>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown2' class='dropdown-content'>
+            <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+            <li><a href="{{route('login.logout')}}">Sair</a></li>
+        </ul>
         <nav class="yellow darken-3" style="height: 200px;">
           <div class="nav-wrapper container" style="display: flex; align-items: center; justify-content: space-between;">
             <a href="{{route('site.index')}}" class="brand-logo center" style="font-size: 50px;">Dom Coxitos</a>
@@ -31,15 +36,13 @@
                 <li><a href="{{route('site.cart')}}">Carrinho</a></li>
             @endif
             </ul>
-           {{--  <ul id="nav-mobile" class="right" style="display: flex; align-items: center;">
-            <li><a href="{{route('site.index')}}">Home</a></li>
-            <li><a href="" class="dropdown-trigger" data-target='dropdown1'>Categorias<i class="material-icons right">expand_more</i></a></li>
-            @if (CartFacade::getContent()->count() > 0)
-                <li><a href="{{route('site.cart')}}">Carrinho<span class="new badge red darken-3" data-badge-caption="">{{CartFacade::getContent()->count()}}</span></a></li>
-            @else 
-                <li><a href="{{route('site.cart')}}">Carrinho</a></li>
-            @endif
-            </ul> --}}
+            <ul id="nav-mobile" class="right" style="display: flex; align-items: center;">
+                @auth
+                    <li><a href="" class="dropdown-trigger" data-target='dropdown2'>Olá {{Auth()->user()->firstName}} {{Auth()->user()->lastName}}!<i class="material-icons right">expand_more</i></a></li>
+                @else
+                    <li><a href="{{route('login.form')}}">Login<i class="material-icons right">lock</i></a></li>
+                @endif
+            </ul>
           </div>
         </nav>
         @yield('conteudo')       
