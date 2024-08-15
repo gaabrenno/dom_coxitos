@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         nav {
-            background: linear-gradient(135deg, #f7d542, #ff4f19);
+            background: linear-gradient(135deg, #ffd000, #f0d665);
         }
         .nav-wrapper {
             display: flex;
