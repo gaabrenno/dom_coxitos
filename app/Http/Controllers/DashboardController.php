@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Produto;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -27,6 +29,16 @@ class DashboardController extends Controller
         $yearsUser = implode(',', $years);
         $totalUser = implode(',', $total);
 
-        return view('admin.dashboard', compact('countUser', 'userLabel', 'yearsUser', 'totalUser'));
+        $catData = Category::with('produtos')->get();
+
+        foreach($catData as $cat){
+            $catName[] = "'".$cat->name."'";
+            $catTotal[] = $cat->produtos->count();
+        }
+
+        $catLabel = implode(',', $catName);
+        $catTotal = implode(',', $catTotal);
+
+        return view('admin.dashboard', compact('countUser', 'userLabel', 'yearsUser', 'totalUser', 'catLabel', 'catTotal'));
     }
 }

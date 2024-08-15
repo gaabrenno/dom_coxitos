@@ -22,7 +22,7 @@
             max-width: 400px;
             width: 100%;
         }
-        .register-container h2 {
+        .register-container h4 {
             margin-bottom: 1.5rem;
             font-weight: bold;
             color: #333;
@@ -46,7 +46,9 @@
 </head>
 <body>
     <div class="register-container z-depth-3">
-        <h2>Dom Coxitos</h2>
+        <div style="display: flex; justify-content: center;">
+            <img src="{{asset('img/logo_dom_coxitos.png')}}" alt="Dom Coxitos" style="max-width: 300px;">
+        </div>
         <h4>Registro</h4>
         <!-- Mensagens de erro -->
         @if($errors->any())

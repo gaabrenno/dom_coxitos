@@ -8,12 +8,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 
-Route::resource('produtos', ProdutoController::class);
+//Route::resource('produtos', ProdutoController::class);
 Route::resource('users', UserController::class);
 
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 Route::get('/produto/{slug}', [SiteController::class, 'details'])->name('site.details');
 Route::get('/category/{id}', [SiteController::class, 'category'])->name('site.category');
+
 Route::get('/cart', [CartController::class, 'cartList'])->name('site.cart');
 Route::post('/cart', [CartController::class, 'cartAdd'])->name('site.cartadd');
 Route::post('/remove', [CartController::class, 'removeCart'])->name('site.cartremove');
@@ -24,7 +25,12 @@ Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 Route::get('/register', [LoginController::class, 'create'])->name('login.create');
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/admin/produtos', [ProdutoController::class, 'index'])->name('admin.produtos');
+Route::delete('/admin/produtos/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.delete');
+Route::post('/admin/produtos/store', [ProdutoController::class, 'store'])->name('admin.produtos.store');
 
 
 /* Route::view('/empresa', 'site/empresa');
