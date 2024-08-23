@@ -9,8 +9,13 @@ use App\Models\Category;
 class SiteController extends Controller
 {
     public function index(){
+        $category = Category::all();
         $produtos = Produto::paginate(10);
-        return view('site.home', compact('produtos'));
+        return view('site.home', compact('produtos', 'category'));
+    }
+      public function produtospage(){
+        $produtos = Produto::paginate(10);
+        return view('site.produtospage', compact('produtos'));
     }
     public function details($slug){
         $produto = Produto::where('slug', $slug)->first();

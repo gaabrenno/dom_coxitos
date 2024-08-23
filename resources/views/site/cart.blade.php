@@ -28,7 +28,7 @@
         </script>
       @endif
       @if($itens->count() == 0)
-        <div class="card yellow darken-3">
+        <div class="card-panel  yellow darken-3">
           <div class="card-content center">
             <p class="white-text" style="font-size: 30px;"><strong>Seu carrinho está vazio</strong></p>
             <p class="white-text">Adicione produtos ao carrinho para saborear os melhores lanches!</p>

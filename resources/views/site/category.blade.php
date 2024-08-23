@@ -3,19 +3,21 @@
 @section('conteudo')
     <div class="row container">
         <h5><strong>Categoria: {{$category->name}}</strong></h5>
-        @foreach ($produtos as $produto)
-            <div class="col s12 m5">
-                <div class="card">
+        <div class="row container">
+            @foreach ($produtos as $produto)
+            <a href="{{ route('site.details', $produto->slug) }}">
+            <div class="col s6 m4 l3">
+                <div class="card small">
                     <div class="card-image">
-                      <img src="{{$produto->img}}">
-                      <a href="{{route('site.details', $produto->slug)}}" class="btn-floating halfway-fab waves-effect waves-light red darken-3"><i class="material-icons">visibility</i></a>
+                        <img src="{{ $produto->img }}" alt="{{ $produto->name }}">
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">{{Str::limit($produto->name, 15)}}</span>
-                      <p>{{ Str::limit($produto->descript, 50)}}</p>
+                    <div class="card-store center-align">
+                        <h5>{{ Str::limit($produto->name, 20) }}</h5>
+                        <p>{{ Str::limit($produto->descript, 30) }}</p>
                     </div>
-                  </div>
+                </div>
             </div>
+            </a>
         @endforeach
     </div>
     <div class="yellow darken-3">
