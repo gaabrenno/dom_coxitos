@@ -1,6 +1,4 @@
-# Vamos criar o arquivo README.md com o conteúdo solicitado.
 
-readme_content = """
 # Dom Coxitos - E-commerce
 
 Este é o projeto de um e-commerce desenvolvido com Laravel 11. Ele permite a navegação de produtos, adição ao carrinho, autenticação de usuários e finalização de compras.
