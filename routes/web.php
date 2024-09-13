@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,10 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adm
 Route::get('/admin/produtos', [ProdutoController::class, 'index'])->name('admin.produtos');
 Route::delete('/admin/produtos/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.delete');
 Route::post('/admin/produtos/store', [ProdutoController::class, 'store'])->name('admin.produtos.store');
+
+Route::get('/admin/categoria', [CategoryController::class, 'index'])->name('admin.categoria');
+Route::delete('/admin/categoria/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.categoria.delete');
+Route::post('/admin/categoria/store', [CategoryController::class, 'store'])->name('admin.categoria.store');
 
 
 /* Route::view('/empresa', 'site/empresa');

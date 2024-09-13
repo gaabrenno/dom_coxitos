@@ -22,7 +22,7 @@
                 <a href="{{ route('site.category', $categoryM->id) }}">
                 <div class="card small">
                     <div class="card-image">
-                        <img src="{{ asset('img/card_fritos.jpg') }}" alt="{{ $categoryM->name }}">
+                        <img src="{{ $categoryM->img ? $categoryM->img : asset('img/card_fritos.jpg') }}" alt="{{ $categoryM->name }}">
                     </div>
                     <div class="card-store center-align">
                         <h5>{{ $categoryM->name }}</h5>

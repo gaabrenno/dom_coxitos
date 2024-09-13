@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         nav {
-            background: linear-gradient(135deg, #ffd000, #f0d665);
+            background: #ffd000;
         }
         .nav-wrapper {
             display: flex;
