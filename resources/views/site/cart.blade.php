@@ -78,17 +78,64 @@
         <div class="row container center">
           <a href="{{route('site.index')}}" class="btn waves-effect waves-light blue darken-3">
             Continuar comprando
-            <i class="material-icons">arrow_back</i>
           </a>
           <a href="{{route('site.cartClean')}}" class="btn waves-effect waves-light red darken-3">
             Limpar Carrinho
-            <i class="material-icons">clear</i>
           </a>
-          <button class="btn waves-effect waves-light green darken-3">
+          <a href="#modal-confirm" class="btn waves-effect waves-light green darken-3 modal-trigger">
             Finalizar Pedido
-            <i class="material-icons">check</i>
-          </button>
+          </a>          
         </div>
       @endif
     </div>
+
+<!-- Modal Estruturado -->
+<div id="modal-confirm" class="modal">
+  <div class="modal-content">
+    <h4>Confirme seu Pedido</h4>
+    <p>Confira os itens abaixo. Após confirmar, você será redirecionado para o WhatsApp para concluir seu atendimento:</p>
+    
+    <ul id="cart-items" class="collection">
+      @foreach ($itens as $item)
+        <li class="collection-item">
+          <span class="title"><strong>Produto:</strong> {{ $item->name }}</span>
+          <p>
+            <strong>Quantidade:</strong> {{ $item->quantity }} <br>
+            <strong>Preço:</strong> R$ {{ number_format($item->price, 2, ',', '.') }}
+          </p>
+        </li>
+      @endforeach
+    </ul>
+
+    <div class="divider"></div>
+    <h5 class="right-align"><strong>Total: R$ {{ number_format(CartFacade::getTotal(), 2, ',', '.') }}</strong></h5>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+    <a id="confirm-purchase" href="#" class="waves-effect waves-green btn green darken-3 white-text">Confirmar e Finalizar</a>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar o modal
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+
+    // Redirecionar para o WhatsApp ao confirmar
+    document.getElementById('confirm-purchase').addEventListener('click', function() {
+      var message = "Olá, gostaria de finalizar a compra dos seguintes itens: \n";
+      
+      @foreach ($itens as $item)
+        var totalItemPrice = {{ $item->price }} * {{ $item->quantity }};
+        message += "Produto: {{ $item->name }} - Quantidade: {{ $item->quantity }} - Valor: R$ " + totalItemPrice.toFixed(2).replace('.', ',') + "\n";
+      @endforeach
+
+      // Redireciona para o WhatsApp com a mensagem
+      window.location.href = 'https://api.whatsapp.com/send?phone=629386-6925&text=' + encodeURIComponent(message);
+    });
+  });
+</script>
 @endsection

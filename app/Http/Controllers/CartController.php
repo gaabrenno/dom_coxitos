@@ -13,6 +13,23 @@ class CartController extends Controller
         $itens = CartFacade::getContent();
         return view('site.cart', compact('itens'));
     }
+    //'finalizar compra' to englesh is 'finish purchase'
+    public function finishPurchase()
+    {
+        // Pegar os itens do carrinho
+        $itens = CartFacade::getContent();
+        $message = "Olá, gostaria de finalizar a compra dos seguintes itens: ";
+    
+        // Construir a mensagem com todos os itens
+        foreach ($itens as $item) {
+            $message .= "Produto: " . $item->name . " - Quantidade: " . $item->quantity . " - Valor: R$ " . number_format($item->price, 2, ',', '.') . "\n";
+        }
+    
+        // Redirecionar para o WhatsApp com a mensagem completa
+        return redirect()->away('https://api.whatsapp.com/send?phone=629386-6925&text=' . urlencode($message));
+    }
+    
+
     public function cartAdd(Request $request)
     {
         CartFacade::add([

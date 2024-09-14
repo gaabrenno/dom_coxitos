@@ -22,6 +22,7 @@ Route::post('/cart', [CartController::class, 'cartAdd'])->name('site.cartadd');
 Route::post('/remove', [CartController::class, 'removeCart'])->name('site.cartremove');
 Route::post('/update', [CartController::class, 'updateCart'])->name('site.cartupdate');
 Route::get('/clean', [CartController::class, 'cleanCart'])->name('site.cartClean');
+Route::get('/finish', [CartController::class, 'finishPurchase'])->name('site.finishPurchase');
 
 Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
