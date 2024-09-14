@@ -23,6 +23,7 @@ Route::post('/remove', [CartController::class, 'removeCart'])->name('site.cartre
 Route::post('/update', [CartController::class, 'updateCart'])->name('site.cartupdate');
 Route::get('/clean', [CartController::class, 'cleanCart'])->name('site.cartClean');
 Route::get('/finish', [CartController::class, 'finishPurchase'])->name('site.finishPurchase');
+Route::get('/generate-qr-code', [CartController::class, 'generateQRCode'])->name('site.qrcode');
 
 Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');

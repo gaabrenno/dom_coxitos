@@ -93,7 +93,7 @@
 <div id="modal-confirm" class="modal">
   <div class="modal-content">
     <h4>Confirme seu Pedido</h4>
-    <p>Confira os itens abaixo. Após confirmar, você será redirecionado para o WhatsApp para concluir seu atendimento:</p>
+    <p>Confira os itens abaixo. Após confirmar, você será redirecionado para o <strong style="color: green;">WhatsApp</strong> para concluir seu atendimento:</p>
     
     <ul id="cart-items" class="collection">
       @foreach ($itens as $item)
@@ -110,6 +110,36 @@
     <div class="divider"></div>
     <h5 class="right-align"><strong>Total: R$ {{ number_format(CartFacade::getTotal(), 2, ',', '.') }}</strong></h5>
   </div>
+
+  {{--
+  <div id="modal-confirm" class="modal">
+  <div class="modal-content">
+    <h4>Confirme seu Pedido</h4>
+    <p>Confira os itens abaixo. Após confirmar, você será redirecionado para o <strong style="color: green;">WhatsApp</strong> para concluir seu atendimento:</p>
+    
+    <ul id="cart-items" class="collection">
+      @foreach ($itens as $item)
+        <li class="collection-item">
+          <span class="title"><strong>Produto:</strong> {{ $item->name }}</span>
+          <p>
+            <strong>Quantidade:</strong> {{ $item->quantity }} <br>
+            <strong>Preço:</strong> R$ {{ number_format($item->price, 2, ',', '.') }}
+          </p>
+        </li>
+      @endforeach
+    </ul>
+
+    <div class="divider"></div>
+    <h5 class="right-align"><strong>Total: R$ {{ number_format(CartFacade::getTotal(), 2, ',', '.') }}</strong></h5>
+
+    <div class="qr-code-section center-align">
+      <p>Caso queira ser redirecionado diretamente pelo celular, scaneie o QR Code:</p>
+      $qrCode = new Endroid\QrCode\QrCode('https://api.whatsapp.com/send?phone=629386-6925&text=' . urlencode($message));
+    </div>
+  </div>
+</div>
+
+  --}}
 
   <div class="modal-footer">
     <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>

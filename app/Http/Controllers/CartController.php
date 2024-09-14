@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Facades\CartFacade;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class CartController extends Controller
 {
@@ -16,11 +18,9 @@ class CartController extends Controller
     //'finalizar compra' to englesh is 'finish purchase'
     public function finishPurchase()
     {
-        // Pegar os itens do carrinho
         $itens = CartFacade::getContent();
         $message = "Olá, gostaria de finalizar a compra dos seguintes itens: ";
     
-        // Construir a mensagem com todos os itens
         foreach ($itens as $item) {
             $message .= "Produto: " . $item->name . " - Quantidade: " . $item->quantity . " - Valor: R$ " . number_format($item->price, 2, ',', '.') . "\n";
         }
@@ -29,6 +29,19 @@ class CartController extends Controller
         return redirect()->away('https://api.whatsapp.com/send?phone=629386-6925&text=' . urlencode($message));
     }
     
+    public function generateQRCode()
+    {
+        $itens = CartFacade::getContent();
+        $message = "Olá, gostaria de finalizar a compra dos seguintes itens: \n";
+        
+        foreach ($itens as $item) {
+            $message .= "Produto: " . $item->name . " - Quantidade: " . $item->quantity . " - Valor: R$ " . number_format($item->price * $item->quantity, 2, ',', '.') . "\n";
+        }
+    
+        $qrCode = QrCode::size(200)->generate('https://api.whatsapp.com/send?phone=629386-6925&text=' . urlencode($message));
+    
+        return view('seu_modal_view', compact('itens', 'qrCode', 'message'));
+    }
 
     public function cartAdd(Request $request)
     {

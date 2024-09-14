@@ -139,6 +139,15 @@
           width: 100%;
           height: auto; /* Ajusta a altura conforme necessário */
         }
+        .qr-code-section {
+    margin-top: 20px;
+}
+
+.qr-code-section img {
+    display: inline-block;
+    margin: 0 auto;
+}
+
         
 
     </style>
