@@ -27,19 +27,13 @@
         .brand-logo {
             margin: 0 auto;
             position: absolute;
-            left: 50%;
+            left: 05%;
             transform: translateX(-50%);
-        }
-        .left-items {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            flex: 1;
         }
         .right-items {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             flex: 1;
         }
         .cards-container {
@@ -126,30 +120,23 @@
             border: 0;
             border-radius: 10px;
         }
-
         .card-carousel {
           margin: 0 auto;
         }
-
         .card-carousel .card {
           margin: 0 10px; /* Espaçamento entre os cards */
         }
-
         .card-carousel .card-image img {
           width: 100%;
           height: auto; /* Ajusta a altura conforme necessário */
         }
         .qr-code-section {
-    margin-top: 20px;
-}
-
-.qr-code-section img {
-    display: inline-block;
-    margin: 0 auto;
-}
-
-        
-
+        margin-top: 20px;
+        }
+        .qr-code-section img {
+            display: inline-block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
